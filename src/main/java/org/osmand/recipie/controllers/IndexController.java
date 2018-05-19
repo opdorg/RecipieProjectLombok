@@ -1,16 +1,14 @@
 package org.osmand.recipie.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.osmand.recipie.services.RecipeService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Slf4j
 public class IndexController {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private RecipeService recipeService;
 
@@ -21,7 +19,7 @@ public class IndexController {
 
     @RequestMapping({"","/","/index"})
     public String getIndexPage(Model model) {
-        logger.info(":::::::: In Index Controller :::::::::");
+        log.info(":::::::: In Index Controller :::::::::");
         model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";

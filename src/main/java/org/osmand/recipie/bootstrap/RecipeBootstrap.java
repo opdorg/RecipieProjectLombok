@@ -1,5 +1,6 @@
 package org.osmand.recipie.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.osmand.recipie.domain.*;
 import org.osmand.recipie.repositories.CategoryRepository;
 import org.osmand.recipie.repositories.RecipeRepository;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
@@ -29,6 +31,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading bootstrap data");
     }
 
     private List<Recipe> getRecipes() {
